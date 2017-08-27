@@ -19,8 +19,12 @@ services:
         - mysql:mysql
     mysql:
       image: mariadb:latest
+      env_file:
+          - ./.env
       environment:
-        - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_DATABASE=test
+          - MYSQL_DATABASE=${MYSQL_DATABASE}
+          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          - MYSQL_USER=${MYSQL_USER}
+          - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       volumes:
         - ./database:/var/lib/mysql
